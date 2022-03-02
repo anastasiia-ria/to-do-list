@@ -10,7 +10,7 @@ namespace ToDoList.Tests
   {
     public void Dispose()
     {
-     Item.ClearAll();
+      Item.ClearAll();
     }
     [TestMethod]
     public void ItemConstructor_CreatesInstanceOfItem_Item()
@@ -40,12 +40,12 @@ namespace ToDoList.Tests
     [TestMethod]
     public void GetAll_ReturnsEmptyList_ItemList()
     {
-      List<Item> newList = new List<Item> {};
+      List<Item> newList = new List<Item> { };
       List<Item> result = Item.GetAll();
       foreach (Item thisItem in result)
-  {
-    Console.WriteLine("Output from empty list GetAll test: " + thisItem.Description);
-  }
+      {
+        Console.WriteLine("Output from empty list GetAll test: " + thisItem.Description);
+      }
       CollectionAssert.AreEqual(newList, result);
     }
     [TestMethod]
@@ -61,10 +61,24 @@ namespace ToDoList.Tests
 
       List<Item> result = Item.GetAll();
       foreach (Item thisItem in result)
-  {
-    Console.WriteLine("Output from second GetAll test: " + thisItem.Description);
-  }
+      {
+        Console.WriteLine("Output from second GetAll test: " + thisItem.Description);
+      }
       CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
+    {
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
+
+      //Act
+      int result = newItem.Id;
+
+      //Assert
+      Assert.AreEqual(1, result);
     }
   }
 }
